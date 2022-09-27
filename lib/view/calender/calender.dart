@@ -21,7 +21,7 @@ class _CalenderState extends State<Calender> {
   late final ValueNotifier<List<Event>> _selectedEvents;
   CalendarFormat _calendarFormat = CalendarFormat.month;
   RangeSelectionMode _rangeSelectionMode = RangeSelectionMode
-      .toggledOff; // Can be toggled on/off by longpressing a date
+      .toggledOff;
   DateTime _focusedDay = DateTime.now();
   DateTime? _selectedDay;
   DateTime? _rangeStart;
@@ -43,12 +43,10 @@ class _CalenderState extends State<Calender> {
   }
 
   List<Event> _getEventsForDay(DateTime day) {
-    // Implementation example
     return kEvents[day] ?? [];
   }
 
   List<Event> _getEventsForRange(DateTime start, DateTime end) {
-    // Implementation example
     final days = daysInRange(start, end);
 
     return [
@@ -61,7 +59,7 @@ class _CalenderState extends State<Calender> {
       setState(() {
         _selectedDay = selectedDay;
         _focusedDay = focusedDay;
-        _rangeStart = null; // Important to clean those
+        _rangeStart = null; 
         _rangeEnd = null;
         _rangeSelectionMode = RangeSelectionMode.toggledOff;
       });
@@ -79,7 +77,6 @@ class _CalenderState extends State<Calender> {
       _rangeSelectionMode = RangeSelectionMode.toggledOn;
     });
 
-    // `start` or `end` could be null
     if (start != null && end != null) {
       _selectedEvents.value = _getEventsForRange(start, end);
     } else if (start != null) {
@@ -140,7 +137,6 @@ class _CalenderState extends State<Calender> {
                   holidayTextStyle: const TextStyle(color: Colors.white),
                   outsideTextStyle: const TextStyle(color: Colors.white),
                   defaultTextStyle: const TextStyle(color: Colors.white),
-                  // Use `CalendarStyle` to customize the UI
                   outsideDaysVisible: false,
                 ),
                 onDaySelected: _onDaySelected,
